@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/orders', \App\Http\Controllers\OrderController::class);
-Route::resource('/results', \App\Http\Controllers\ResultController::class);
+Route::get('/results', [\App\Http\Controllers\ResultController::class, 'index']);

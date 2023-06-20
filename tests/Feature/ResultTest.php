@@ -16,22 +16,20 @@ class ResultTest extends TestCase
 
     public function test_that_phone_is_required(): void
     {
-        $response = $this->post('/results', [
+        $response = $this->post('/api/results', [
             'password' => '12345678',
         ]);
 
-        $response->isRedirect('/results');
-        $response->assertSessionHas('error');
+        $response->assertJsonStructure(['error']);
     }
 
     public function test_that_password_is_required(): void
     {
-        $response = $this->post('/results', [
+        $response = $this->post('/api/results', [
             'phone' => '12345678',
         ]);
 
-        $response->isRedirect('/results');
-        $response->assertSessionHas('error');
+        $response->assertJsonStructure(['error']);
     }
 
     public function test_that_a_result_can_be_viewed(): void
@@ -39,11 +37,11 @@ class ResultTest extends TestCase
         $password = 'pwcleartext';
         $order = \App\Models\Order::factory()->create(['password' => \Hash::make($password)]);
 
-        $response = $this->post('/results', [
+        $response = $this->post('/api/results', [
             'phone' => $order->phone,
             'password' => $password,
         ]);
 
-        $response->assertSee('Your test was positive!');
+        $response->assertExactJson(['success' => 'Your test was positive!']);
     }
 }

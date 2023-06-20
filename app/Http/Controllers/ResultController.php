@@ -12,7 +12,7 @@ class ResultController extends Controller
         return view('result');
     }
 
-    public function store(): \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+    public function store(): \Illuminate\Http\JsonResponse
     {
         try {
             $data = $this->validate(request(), [
@@ -20,15 +20,13 @@ class ResultController extends Controller
                 'password' => 'required',
             ]);
         } catch (ValidationException $e) {
-            return redirect('/results')->with('error', 'Please fill out all fields!');
+            return response()->json(['error' => 'Please fill out all fields!']);
         }
 
         if (! Order::verify($data['phone'], $data['password'])) {
-            return redirect('/results')->with('error', 'Phone or password incorrect!');
+            return response()->json(['error' => 'Phone or password incorrect!']);
         }
 
-        session()->flash('success', 'Your test was positive!');
-
-        return view('result');
+        return response()->json(['success' => 'Your test was positive!']);
     }
 }

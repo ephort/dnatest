@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function invoicePath(): string
     {
         return storage_path('invoices/' . $this->id . '.pdf');
@@ -16,7 +18,7 @@ class Order extends Model
 
     public static function verify(string $phone, string $password): bool
     {
-        $order = Order::where('phone', $phone)->first();
+        $order = static::where('phone', $phone)->first();
 
         if (! $order) {
             return false;

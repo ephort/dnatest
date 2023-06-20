@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\GenerateInvoice;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 
 class OrderController extends Controller
 {
@@ -24,7 +21,7 @@ class OrderController extends Controller
 
         $data['password'] = \Hash::make($data['password']);
 
-        $order = \App\Models\Order::forceCreate($data);
+        $order = \App\Models\Order::create($data);
 
         return redirect('/')->with(
             'success',

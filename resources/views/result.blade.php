@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>DNA Test</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -28,16 +28,10 @@
                 <div class="mt-16">
                     <!-- center content -->
                     <div class="flex flex-col items-center justify-center">
-                        @if(session()->has('success'))
-                            <div data-test="success" class="bg-green-500 text-white p-4 rounded-lg mb-6">
-                                {!! session()->get('success') !!}
-                            </div>
-                        @endif
-                        @if(session()->has('error'))
-                            <div data-test="error" class="bg-red-500 text-white p-4 rounded-lg mb-6">
-                                {!! session()->get('error') !!}
-                            </div>
-                        @endif
+                        <div data-test="success" class="bg-green-500 text-white p-4 rounded-lg mb-6" style="display:none">
+                        </div>
+                        <div data-test="error" class="bg-red-500 text-white p-4 rounded-lg mb-6" style="display:none">
+                        </div>
 
                         <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                             <div>
@@ -49,7 +43,6 @@
                                 </p>
 
                                 <form action="{{ action([\App\Http\Controllers\ResultController::class, 'store']) }}" method="post">
-                                    @csrf
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Phone</label>
@@ -92,5 +85,33 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.querySelector('[data-test="success"]').innerHTML = data.success;
+                        document.querySelector('[data-test="success"]').style.display = 'block';
+                        document.querySelector('[data-test="error"]').style.display = 'none';
+                    } else if (data.error) {
+                        document.querySelector('[data-test="error"]').innerHTML = data.error;
+                        document.querySelector('[data-test="error"]').style.display = 'block';
+                        document.querySelector('[data-test="success"]').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            });
+        </script>
     </body>
 </html>
