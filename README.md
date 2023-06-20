@@ -6,7 +6,6 @@ rm -f storage/invoices/*
 Make sure the connection is served via HTTP/2
 Create test order for another person
 
-
 # Talk "Defence Against The Dark Arts: Detecting and Mitigation Timing Attacks"
 
  - I have been intrigued by timing attacks since I attended a Ruby on Rails meetup in 2019 where a guy named Rune Philosof 
@@ -95,7 +94,7 @@ Now we have just been looking at my local machine, but remote there is a lot of 
 affect the timing of the requests a lot.
 
 To test this I have deployed a server in Sydney in Australia - that should be the opposite side of the world.
-Let's take a look at dnatest.au.
+Let's take a look at dnatest-au.dk .
 
 It's awful slow - so what do we do? 
 We can either move to Australia or we can use The Dark Arts - also called Timeless Timing Attacks.
@@ -117,6 +116,39 @@ to determine if the server took longer time to process the request.
 
 The recipe for Timeless Timing Attack is to 
  1) Send pair of requests to the server - in each pair a request with valid username, but incorrect password and a request with a username to test and incorrect password 
+ 2) Send a number of these request-pairs to the server depending on the response time of the server. I have chosen 4 requests.
+ 3) If the request with the valid username and incorrect password is returned last in all the request pairs, then it indicates
+that the username we are testing does not exists. If they are returned at the same time, then the username exists.
 
+ - Let's try it out
 
+python3 ./timingattack/dnatest.py
 
+[edit dantest.py to try with unknown username]
+[edit dantest.py to try with guessed username]
+    
+ - How to prevent?
+
+Since Laravel 8 the Timebox support class is available.
+It's a class that can be used to make sure that a request takes a minimum amount of time to process.
+
+ - Detecting vulnerabilities
+
+Identify sensitive information (vary between applications).
+Remember that most vulnerabilities are chained when exploited - so could be a stepping stone in a chained exploit.
+Remember that information is given away in multiple ways (what we say, what we don't say, how long we take before we say it etc.)
+
+Mitigating is possible by hiding the execution time from the user.
+We can do that by:
+
+1) Using Timebox
+2) Pushing to async queue
+3) Use cron jobs
+4) Send email with sensitive information on demand instead of showing it in the browser
+
+ - Conclusion
+
+Timing attacks are a real threat, and we need to take them seriously.
+We need to think about how we write code, and how we can prevent timing attacks.
+
+ - Questions
