@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 20; $i++) {
-            \App\Models\Order::factory(100)->create();
+        for ($i = 0; $i < 15; $i++) {
+            \App\Models\Order::factory(50)->create();
         }
     }
 }
