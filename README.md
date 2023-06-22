@@ -1,10 +1,15 @@
-# Up and running
+# Defence against the Dark Arts: Detecting and Mitigating Timing Attacks
+
+This is a demo application for the talk "Defence against the Dark Arts: Detecting and Mitigating Timing Attacks".
+
+## Up and running
 
 php artisan migrate:fresh --force && php artisan db:seed --force && rm -f storage/invoices/*
 Make sure the connection is served via HTTP/2
 Create test order for another person
+Create test order for yourself on dnatest-au
 
-# Talk "Defence Against The Dark Arts: Detecting and Mitigation Timing Attacks"
+## Talk manuscript
 
  - I have been intrigued by timing attacks since I attended a Ruby on Rails meetup in 2019 where a guy named Rune Philosof 
 showed how timing attacks could be used to reveal a password string one character at a time.
@@ -114,9 +119,9 @@ to determine if the server took longer time to process the request.
 
 The recipe for Timeless Timing Attack is to 
  1) Send pair of requests to the server - in each pair a request with valid username, but incorrect password and a request with a username to test and incorrect password 
- 2) Send a number of these request-pairs to the server depending on the response time of the server. I have chosen 4 requests.
+ 2) Send a number of these request-pairs to the server depending on the response time of the server. I have chosen 6 requests.
  3) If the request with the valid username and incorrect password is returned last in all the request pairs, then it indicates
-that the username we are testing does not exists. If they are returned at the same time, then the username exists.
+that the username we are testing does not exist. If they are returned at the same time, then the username exists.
 
  - Let's try it out
 
@@ -124,7 +129,7 @@ python3 ./timingattack/dnatest.py
 
 [edit dantest.py to try with unknown username]
 [edit dantest.py to try with guessed username]
-    
+
  - How to prevent?
 
 Since Laravel 8 the Timebox support class is available.

