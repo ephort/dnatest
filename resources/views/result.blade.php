@@ -46,13 +46,13 @@
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Phone</label>
-                                            <input type="text" name="phone" id="phone" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="+45 30959993" required>
+                                            <input autocomplete="off" type="text" name="phone" id="phone" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="+45 30959993" required>
                                         </div>
                                     </div>
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Your password</label>
-                                            <input type="password" name="password" id="password" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="" required>
+                                            <input autocomplete="off" type="password" name="password" id="password" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="" required>
                                         </div>
                                     </div>
 

@@ -32,7 +32,7 @@ class OrderController extends Controller
     public function show(\App\Models\Order $order)
     {
         if (! file_exists($order->invoicePath())) {
-            dispatch_sync(new GenerateInvoice($order));
+            GenerateInvoice::dispatchSync($order);
         }
 
         return response()->file($order->invoicePath());

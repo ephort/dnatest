@@ -15,5 +15,11 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 15; $i++) {
             \App\Models\Order::factory(50)->create();
         }
+
+        \App\Models\Order::factory()->create([
+            'name' => 'Kristian',
+            'phone' => '61401169',
+            'password' => \Hash::make('Oo46i8eM'),
+        ]);
     }
 }

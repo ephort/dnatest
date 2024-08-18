@@ -55,19 +55,19 @@
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Name</label>
-                                            <input type="text" name="name" id="name" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="John Doe" required>
+                                            <input autocomplete="off"  type="text" name="name" id="name" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="John Doe" required>
                                         </div>
                                     </div>
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Address</label>
-                                            <input type="text" name="address" id="address" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="Janestreet 1" required>
+                                            <input autocomplete="off"  type="text" name="address" id="address" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="Janestreet 1" required>
                                         </div>
                                     </div>
                                     <div class="mt-6">
                                         <div class="flex flex-col gap-2">
                                             <label for="name" class="text-sm text-gray-600 dark:text-gray-400">Phone</label>
-                                            <input type="text" name="phone" id="phone" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="+45 30959993" required>
+                                            <input autocomplete="off"  type="text" name="phone" id="phone" class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline focus:outline-2 focus:outline-red-500" placeholder="+45 30959993" required>
                                         </div>
                                     </div>
                                     <div class="mt-6">
